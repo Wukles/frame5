@@ -68,24 +68,9 @@
         </form>
       </div>
       <div class="container">
+        <a href="get.php?key=t">Toch</a>
         <?php
-        // $a = 6;
-        // for ($i = 0; $i < $a; $i++){
-        //   echo $i;
-        // }
-        // $arr = [1, 2, 3, 4];
-        // echo $arr[0];
-        $array = [
-          'd'=>1,
-          'r'=>2,
-          'g'=>3,
-          'e'=>4
-        ];
-        //    echo $array['d'];
-
-        foreach($array as $key=>$value){
-          echo $key.'='.$value.'<br>';
-        }
+          // echo $_POST['email'];
         ?>
 
       </div>
