@@ -16,15 +16,15 @@ class ArticleController{
 
     public function index(){
         $sql = 'SELECT * FROM `articles`';
-        $articles = $this->db->query($sql);
+        $articles = $this->db->query($sql, [], Article::class);
         $this->view->renderHtml('main/main.php', ['articles'=>$articles]);
     }
 
     public function show($id){
         $sql = 'SELECT * FROM `articles` WHERE `id`=:id;';
-        $article = $this->db->query($sql, [':id'=>$id]);
-        var_dump($article);
-        if (!$article) {
+        $article = $this->db->query($sql, [':id'=>$id], Article::class);
+        // var_dump($article);
+        if (!$article){
             $this->view->renderHtml('main/error.php',[], 404);
             return;
         }

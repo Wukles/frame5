@@ -15,7 +15,7 @@
 
         
         public function main(){
-            $sql = 'SELECT * FROM articles';
+            $sql = 'SELECT * FROM `articles`';
             $articles = $this->db->query($sql);
             $this->view->renderHtml('main/main.php', ['articles'=>$articles]);
         }

@@ -1,5 +1,5 @@
-<?php include(dirname(__DIR__).'/header.html')?>
-<table class="table">
+<?php require(dirname(__DIR__).'/header.html')?>
+        <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -11,12 +11,12 @@
     <?php foreach($articles as $article){
         echo '<tr>
             <th scope="row">1</th>
-            <td><a href="article/'.$article['id'].'">'.$article['title'].'</a></td>
-            <td>'.$article['text'].'</td>
+            <td><a href="article/'.$article->getId().'">'.$article->getTitle().'</a></td>
+            <td>'.$article->getText().'</td>
             </tr>';
     }
     ?>
-    
-  </tbody>
+    </tbody>
 </table>
-<?php include(dirname(__DIR__).'/footer.html')?>
+
+<?php require(dirname(__DIR__).'/footer.html')?>

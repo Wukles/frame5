@@ -4,18 +4,16 @@ spl_autoload_register(function (string $className){
     require_once '../'.str_replace('\\', '/', $className).'.php';
 });
 
-//$controller = new src\Controllers\MainController;
-
 $url = $_GET['route'] ?? '';
 $routes = require '../src/routes.php';
 $isRouteFound = false;
 
 foreach($routes as $pattern=>$controllerAndAction){
     preg_match($pattern, $url, $matches);
-    if(!empty($matches)) {
+    if (!empty($matches)){
         $isRouteFound = true;
         break;
-    }
+    }     
 }
 
 unset($matches[0]);
