@@ -42,7 +42,7 @@ class ArticleController{
         $article = new Article;
         $article->setTitle($_POST['title']);
         $article->setText($_POST['text']);
-        $article->setAuthor($_POST['author']);
+        $article->setAuthorId($_POST['author']);
         $article->save();
     }
 }

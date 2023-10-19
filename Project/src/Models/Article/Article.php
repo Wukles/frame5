@@ -30,8 +30,8 @@
             $this->text = $text;
         }
 
-        public function setAuthor(string $author){
-            $this->author = $author;
+        public function setAuthorId(string $authorId){
+            $this->authorId = $authorId;
         }
 
         public static function getTableName():string

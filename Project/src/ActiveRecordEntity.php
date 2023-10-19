@@ -2,8 +2,6 @@
 
 namespace src;
 use Services\Db;
-use src\ActiveRecordEntity;
-
 
 abstract class ActiveRecordEntity{
     protected $id;
@@ -12,7 +10,6 @@ abstract class ActiveRecordEntity{
         $propertyName = $this->underscoreToCamelcase($name);
         $this->$propertyName = $value;
     }
-
     public function mapPropertiesToDbFormat(){
         $propertiesName = [];
 
@@ -25,48 +22,43 @@ abstract class ActiveRecordEntity{
         }
         //var_dump($propertiesName);
         return $propertiesName;
-
     }
-
     public function underscoreToCamelcase(string $name):string
     {
         return lcfirst(str_replace('_', '', ucwords($name, '_')));
     }
 
-    public function camelCasetoUnderscore(string $name):string
+    public function camelCaseToUnderscore(string $name):string
     {
-        return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $name));
+        return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0',$name));
     }
 
     public function getId()
-        {
-            return $this->id;
-        }
-
-    public static function findAll():array{
+    {
+        return $this->id;
+    }
+    public static function findAll():array
+    {
         $db = Db::getInstance();
         $sql = 'SELECT * FROM `'.static::getTableName().'`';
         $articles = $db->query($sql, [], static::class);
         return $articles;
     }
-
     public static function getById(int $id):static{
         $db = Db::getInstance();
+        //var_dump($db);
         $sql = 'SELECT * FROM `'.static::getTableName().'` WHERE `id`=:id;';
         $article = $db->query($sql, [':id'=>$id], static::class);
         return $article[0];
     }
-
     public function save(){
         $mapped = $this->mapPropertiesToDbFormat();
         if ($mapped['id'] === NULL) $this->insert($mapped);
         else $this->update($mapped);
     }
-
     public function update(){
-        
-    }
 
+    }   
     public function insert(array $mappedProperties){
         $filterMappedProperties = array_filter($mappedProperties);
         $db = Db::getInstance();
@@ -84,11 +76,6 @@ abstract class ActiveRecordEntity{
         $sql = 'INSERT INTO `'.static::getTableName().'`('.$columnWithS.') VALUES ('.$paramsWithS.')';
         $db->query($sql, $params2Values);
     }
-
-    abstract static function getTableName():string;
-
+    abstract public static function getTableName():string;
 
 }
-
-
-
