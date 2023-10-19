@@ -1,21 +1,23 @@
 <?php
 namespace src\Models\User;
+use src\ActiveRecordEntity;
 
-class User{
-    private $id;
-    private $nickname;
-    private $email;
-    private $isConfirmed;
-    private $role;
-    private $passwordHash;
-    private $authToken;
 
-    public function __construct(string $name){
-        $this->name = $name;
-    }
+class User extends ActiveRecordEntity{
+    protected $nickname;
+    protected $email;
+    protected $isConfirmed;
+    protected $role;
+    protected $passwordHash;
+    protected $authToken;
 
     public function getName(){
-        return $this->name;
+        return $this->nickname;
+    }
+
+    public static function getTableName():string
+    {
+        return 'users';
     }
 }
 ?>

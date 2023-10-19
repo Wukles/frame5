@@ -3,6 +3,7 @@
   <div class="card-body">
     <h5 class="card-title"><?=$article->getTitle();?></h5>
     <p class="card-text"><?=$article->getText();?></p>
+    <h5 class="card-title"><?=$user->getName();?></h5>
     <a href="#" class="card-link">Card link</a>
     <a href="#" class="card-link">Another link</a>
   </div>
