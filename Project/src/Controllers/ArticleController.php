@@ -32,4 +32,17 @@ class ArticleController{
         }
         $this->view->renderHtml('articles/show.php', ['article'=>$article, 'user'=>$user]);
     }
+
+    public function create(){
+        $users = User::findAll();
+        $this->view->renderHtml('articles/create.php', ['users'=>$users]);
+    }
+
+    public function store(){
+        $article = new Article;
+        $article->setTitle($_POST['title']);
+        $article->setText($_POST['text']);
+        $article->setAuthor($_POST['author']);
+        $article->save();
+    }
 }

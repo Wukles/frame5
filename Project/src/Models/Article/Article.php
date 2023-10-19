@@ -22,6 +22,18 @@
             return $this->text;
         }
 
+        public function setTitle(string $title){
+            $this->title = $title;
+        }
+
+        public function setText(string $text){
+            $this->text = $text;
+        }
+
+        public function setAuthor(string $author){
+            $this->author = $author;
+        }
+
         public static function getTableName():string
         {
             return 'articles';
