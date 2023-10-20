@@ -24,7 +24,7 @@ class ArticleController{
 
     public function show($id){
         $article = Article::getById($id);
-        $user = User::getById($article->getAuthorId());
+        $user = $article->getAuthorId();
        
         if (!$article){
             $this->view->renderHtml('main/error.php',[], 404);
@@ -44,5 +44,29 @@ class ArticleController{
         $article->setText($_POST['text']);
         $article->setAuthorId($_POST['author']);
         $article->save();
+        //return $this->view->renderHtml('');
+        $this->index();
+    }
+
+    public function edit($id){
+        $article = Article::getById($id);
+        $users = User::findAll();
+        //$user = User::getById($article->getAuthorId());
+        $this->view->renderHtml('articles/edit.php', ['article'=>$article, 'users'=>$users]);
+    }
+
+    public function update(int $id){
+        $article = Article::getById($id);
+        $article->setTitle($_POST['title']);
+        $article->setText($_POST['text']);
+        $article->setAuthorId($_POST['author']);
+        $article->save();
+        $this->show($id);
+    }
+
+    public function delete(int $id){
+        $article = Article::getById($id);
+        $article->delete();
+        $this->index();
     }
 }

@@ -11,7 +11,7 @@
     <?php foreach($articles as $article){
         echo '<tr>
             <th scope="row">1</th>
-            <td><a href="article/'.$article->getId().'">'.$article->getTitle().'</a></td>
+            <td><a href="/frame/Project/www/article/'.$article->getId().'">'.$article->getTitle().'</a></td>
             <td>'.$article->getText().'</td>
             </tr>';
     }
